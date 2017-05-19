@@ -1,11 +1,14 @@
 #coding=utf-8
 import web
+import MySQLdb
+import MySQLdb.cursors
 import template
 
 render = web.template.render('templates')
 urls = (
     # 匹配范围更大的放后面。
     '/index', 'index',
+    '/article','article',
     '/blog/\d+', 'blog',
     '/(.*)', 'hello'
 )
@@ -27,6 +30,17 @@ class blog:
 class hello:
     def GET(self, name):
         return render.template01(name)
+class article:
+    def GET(self):
+        conn = MySQLdb.connect(host='localhost', user='root', passwd='focus', db='world', port=3306)
+        cur = conn.cursor()
+        cur.execute('select  Name from city limit 0,50')
+        r = cur.fetchall()
+        cur.close()
+        conn.close()
+        print r
+
+        return render.city(r)
 
 # class hello:
 #     def GET(self, name):
