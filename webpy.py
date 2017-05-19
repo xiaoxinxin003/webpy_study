@@ -1,5 +1,5 @@
 import web
-#coding=utf-8
+
 urls = (
     '/index', 'index',
     '/blog/\d+', 'blog',
@@ -20,9 +20,13 @@ class blog:
         return web.ctx.env
 class hello:
     def GET(self, name):
-        if not name:
-            name = 'World'
-        return 'Hello, ' + name + '!'
+        return open(".\js_lesson01.html")
+
+# class hello:
+#     def GET(self, name):
+#         if not name:
+#             name = 'World'
+#         return 'Hello, ' + name + '!'
 
 if __name__ == "__main__":
     app.run()
