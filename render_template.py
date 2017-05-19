@@ -18,7 +18,8 @@ app = web.application(urls, globals())
 class index:
     def GET(self):
         query = web.input()
-        return query
+        # 跳转
+        return web.seeother('/article')
 
 # 请求参数获取web.input()   请求头获取：web.ctx.env
 class blog:
